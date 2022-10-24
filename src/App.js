@@ -113,7 +113,7 @@ function App() {
       for (let i = 0; i < gameCollection.length; i++) {
         arr4.push(arr3[i]);
       }
-      console.log(arr4);
+      setData(arr4);
     };
     call();
   }, []);
