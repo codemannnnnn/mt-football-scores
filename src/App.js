@@ -7,7 +7,9 @@ import { useEffect, useState } from "react";
 function App() {
   //state
   const [data, setData] = useState([]);
+
   const url = "https://scorestream.com/api";
+
   const params = {
     method: "games.search",
     params: {
@@ -15,19 +17,12 @@ function App() {
       aboveConfidenceGrade: 30,
       afterDateTime: "2022-10-15 21:57:26",
       beforeDateTime: "2022-10-23 21:57:26",
-      location: {
-        country: "US",
-        city: "Kalispell",
-        latitude: 48.1958,
-        longitude: -114.3129,
-        state: "MT",
-      },
       sportNames: ["football"],
       squadIds: [1010],
       country: "US",
       state: "MT",
+      count: 100,
       offset: 0,
-      count: 50,
       apiKey: "a20bd983-0147-437a-ab6d-49afeb883d33",
     },
   };
@@ -45,7 +40,7 @@ function App() {
 
       gameCollection.map((e) => {
         var recentDate = moment(e.startDateTime).unix();
-        var oldDateComparer = moment(new Date()).subtract(4, "d").unix();
+        var oldDateComparer = moment(new Date()).subtract(6, "d").unix();
 
         if (recentDate > oldDateComparer) {
           let homeTeam = e.homeTeamId;
@@ -55,27 +50,14 @@ function App() {
 
           var newRes = {
             gameId: e.gameId,
-            results: {
-              homeTeamId: homeTeam,
-              awayTeamId: awayTeam,
-              score: {
-                homeTeam: homeTeamScore,
-                awayTeam: awayTeamScore,
-              },
+
+            homeTeamId: homeTeam,
+            awayTeamId: awayTeam,
+            score: {
+              homeTeam: homeTeamScore,
+              awayTeam: awayTeamScore,
             },
           };
-
-          let res = {
-            home: {
-              team: homeTeam,
-              score: homeTeamScore,
-            },
-            away: {
-              team: awayTeam,
-              score: awayTeamScore,
-            },
-          };
-
           arr.push(newRes);
         }
       });
@@ -83,18 +65,16 @@ function App() {
       const homeArr = [];
       arr.map((e) => {
         teamCollection.map((j) => {
-          let home = [];
-          let away = [];
-          if (j.teamId == e.results.homeTeamId) {
+          if (j.teamId == e.homeTeamId) {
             homeArr.push({
-              info: e,
+              ...e,
               homeTeamName: j.teamName,
               homeTeamMascot: j.mascot1,
             });
           }
-          if (j.teamId == e.results.awayTeamId) {
+          if (j.teamId == e.awayTeamId) {
             homeArr.push({
-              info: e,
+              ...e,
               awayTeamName: j.teamName,
               awayTeamMascot: j.mascot1,
             });
@@ -109,12 +89,32 @@ function App() {
 
         count = count + 2;
       }
+
       var arr4 = [];
+
       for (let i = 0; i < gameCollection.length; i++) {
         arr4.push(arr3[i]);
       }
-      setData(arr4);
+
+      //compare the master data list against the pulled in game data
+      //match them, add the class to the object, then return.
+      var finArr = [];
+      for (let i = 0; i < masterDataList.length; i++) {
+        for (let j = 0; j < arr4.length; j++) {
+          if (masterDataList[i].teamId == arr4[j].homeTeamId) {
+            var obj = {
+              ...arr4[j],
+              class: masterDataList[i].class,
+            };
+            finArr.push(obj);
+          }
+        }
+      }
+      console.log(finArr);
+      console.log(finArr.length);
+      setData(finArr);
     };
+
     call();
   }, []);
 
