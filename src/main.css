@@ -3,12 +3,13 @@
   /* margin: 0% 5% 2% 5%; */
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 60%;
   margin: auto;
 }
 
 .team-box {
-  background: grey;
+  /* background: grey; */
+  border: 2px solid grey;
   padding: 3%;
   width: 30%;
   display: flex;
@@ -22,7 +23,7 @@
 .home-away {
   display: flex;
   justify-content: space-between;
-  margin: 0% 32% -4.5% 32%;
+  margin: 0% 29% -4.8% 29%;
 }
 
 .score-class {

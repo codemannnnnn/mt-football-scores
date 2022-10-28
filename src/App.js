@@ -16,6 +16,8 @@ function App() {
   const [classB, setClassB] = useState([]);
   const [classC, setClassC] = useState([]);
 
+  document.title = "Montana High School Football";
+
   //loading state
   const [loading, setLoading] = useState(true);
 
@@ -158,6 +160,8 @@ function App() {
     call();
   }, []);
 
+  // console.log(data);
+
   return (
     <div className="App">
       <h1>Montana High School Football</h1>
@@ -175,12 +179,18 @@ function App() {
               return (
                 <div key={idx} className="game-box">
                   <div className="team-box">
-                    <div className="team-class">{e.homeTeamName}</div>
+                    <div>
+                      <div className="team-class">{e.homeTeamName}</div>
+                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    </div>
                     <div className="score-class">{e.score.homeTeam}</div>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div className="team-class">{e.awayTeamName}</div>
+                    <div>
+                      <div className="team-class">{e.awayTeamName}</div>
+                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    </div>
                   </div>
                 </div>
               );
@@ -200,12 +210,18 @@ function App() {
               return (
                 <div key={idx} className="game-box class-a">
                   <div className="team-box">
-                    <div className="team-class">{e.homeTeamName}</div>
+                    <div>
+                      <div className="team-class">{e.homeTeamName}</div>
+                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    </div>
                     <span className="score-class">{e.score.homeTeam}</span>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div className="team-class"> {e.awayTeamName}</div>
+                    <div>
+                      <div className="team-class"> {e.awayTeamName}</div>
+                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    </div>
                   </div>
                 </div>
               );
@@ -225,12 +241,18 @@ function App() {
               return (
                 <div key={idx} className="game-box class-b">
                   <div className="team-box">
-                    <div className="team-class">{e.homeTeamName}</div>
+                    <div>
+                      <div className="team-class">{e.homeTeamName}</div>
+                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    </div>
                     <span className="score-class">{e.score.homeTeam}</span>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div className="team-class"> {e.awayTeamName}</div>
+                    <div>
+                      <div className="team-class"> {e.awayTeamName}</div>
+                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    </div>
                   </div>
                 </div>
               );
@@ -250,12 +272,18 @@ function App() {
               return (
                 <div key={idx} className="game-box class-c">
                   <div className="team-box">
-                    <div className="team-class">{e.homeTeamName}</div>
+                    <div>
+                      <div className="team-class">{e.homeTeamName}</div>
+                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    </div>
                     <span className="score-class">{e.score.homeTeam}</span>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div className="team-class">{e.awayTeamName}</div>
+                    <div>
+                      <div className="team-class">{e.awayTeamName}</div>
+                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    </div>
                   </div>
                 </div>
               );
