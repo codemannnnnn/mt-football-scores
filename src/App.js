@@ -3,20 +3,35 @@ import "./App.css";
 import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
+import masterDataList from "./updateData.json";
+
+//css
+import "./main.css";
 
 function App() {
   //state
   const [data, setData] = useState([]);
+  const [classAA, setClassAA] = useState([]);
+  const [classA, setClassA] = useState([]);
+  const [classB, setClassB] = useState([]);
+  const [classC, setClassC] = useState([]);
+
+  //loading state
+  const [loading, setLoading] = useState(true);
 
   const url = "https://scorestream.com/api";
+
+  const date = new Date();
+  const afterDate = moment(date).subtract(7, "d").format();
+  const beforeDate = moment(date).format();
 
   const params = {
     method: "games.search",
     params: {
       isExploreSearch: true,
       aboveConfidenceGrade: 30,
-      afterDateTime: "2022-10-15 21:57:26",
-      beforeDateTime: "2022-10-23 21:57:26",
+      afterDateTime: afterDate,
+      beforeDateTime: beforeDate,
       sportNames: ["football"],
       squadIds: [1010],
       country: "US",
@@ -110,32 +125,144 @@ function App() {
           }
         }
       }
-      console.log(finArr);
-      console.log(finArr.length);
+      // console.log(finArr);
+      // console.log(finArr.length);
+      const classAAarr = [];
+      const classAarr = [];
+      const classBarr = [];
+      const classCarr = [];
+
+      finArr.map((e) => {
+        if (e.class == "AA") {
+          classAAarr.push(e);
+        }
+        if (e.class == "A") {
+          classAarr.push(e);
+        }
+        if (e.class == "B") {
+          classBarr.push(e);
+        }
+        if (e.class == "C") {
+          classCarr.push(e);
+        }
+      });
+
       setData(finArr);
+      setClassAA(classAAarr);
+      setClassA(classAarr);
+      setClassB(classBarr);
+      setClassC(classCarr);
+      setLoading(false);
     };
 
     call();
   }, []);
 
-  console.log({ data });
-
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Montana High School Football</h1>
+      <div className="home-away">
+        <h1>Home</h1>
+        <h1>Away</h1>
+      </div>
+      <div>
+        <div className="class-aa">
+          <h1>Class AA</h1>
+          {loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            classAA.map((e, idx) => {
+              return (
+                <div key={idx} className="game-box">
+                  <div className="team-box">
+                    <div className="team-class">{e.homeTeamName}</div>
+                    <div className="score-class">{e.score.homeTeam}</div>
+                  </div>
+                  <div className="team-box">
+                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div className="team-class">{e.awayTeamName}</div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+        <div className="home-away">
+          <h1>Home</h1>
+          <h1>Away</h1>
+        </div>
+        <div className="class-a">
+          <h1>Class A</h1>
+          {loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            classA.map((e, idx) => {
+              return (
+                <div key={idx} className="game-box class-a">
+                  <div className="team-box">
+                    <div className="team-class">{e.homeTeamName}</div>
+                    <span className="score-class">{e.score.homeTeam}</span>
+                  </div>
+                  <div className="team-box">
+                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div className="team-class"> {e.awayTeamName}</div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+        <div className="home-away">
+          <h1>Home</h1>
+          <h1>Away</h1>
+        </div>
+        <div className="class-b">
+          <h1>Class B</h1>
+          {loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            classB.map((e, idx) => {
+              return (
+                <div key={idx} className="game-box class-b">
+                  <div className="team-box">
+                    <div className="team-class">{e.homeTeamName}</div>
+                    <span className="score-class">{e.score.homeTeam}</span>
+                  </div>
+                  <div className="team-box">
+                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div className="team-class"> {e.awayTeamName}</div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+        <div className="home-away">
+          <h1>Home</h1>
+          <h1>Away</h1>
+        </div>
+        <div className="class-c">
+          <h1>Class C</h1>
+          {loading ? (
+            <h1>Loading...</h1>
+          ) : (
+            classC.map((e, idx) => {
+              return (
+                <div key={idx} className="game-box class-c">
+                  <div className="team-box">
+                    <div className="team-class">{e.homeTeamName}</div>
+                    <span className="score-class">{e.score.homeTeam}</span>
+                  </div>
+                  <div className="team-box">
+                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div className="team-class">{e.awayTeamName}</div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
     </div>
   );
 }

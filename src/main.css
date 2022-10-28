@@ -1,0 +1,34 @@
+.game-box {
+  /* border: 1px solid black; */
+  /* margin: 0% 5% 2% 5%; */
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: auto;
+}
+
+.team-box {
+  background: grey;
+  padding: 3%;
+  width: 30%;
+  display: flex;
+  flex-direction: space;
+  justify-content: space-between;
+  margin: 1%;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.home-away {
+  display: flex;
+  justify-content: space-between;
+  margin: 0% 32% -4.5% 32%;
+}
+
+.score-class {
+  font-size: 4rem;
+}
+.team-class {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
