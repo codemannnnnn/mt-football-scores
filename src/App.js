@@ -9,7 +9,7 @@ import masterDataList from "./updateData.json";
 import "./main.css";
 
 function App() {
-  //state
+  //state rtest
   const [data, setData] = useState([]);
   const [classAA, setClassAA] = useState([]);
   const [classA, setClassA] = useState([]);
