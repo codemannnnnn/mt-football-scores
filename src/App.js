@@ -143,7 +143,6 @@ function App() {
           }
         });
       });
-      console.log({ arr6 });
 
       //compare the master data list against the pulled in game data
       //match them, add the class to the object, then return.
@@ -159,8 +158,7 @@ function App() {
           }
         }
       }
-      // console.log(finArr);
-      // console.log(finArr.length);
+
       const classAAarr = [];
       const classAarr = [];
       const classBarr = [];
@@ -187,8 +185,6 @@ function App() {
       setClassB(classBarr);
       setClassC(classCarr);
       setLoading(false);
-
-      console.log({ finArr });
     };
 
     call();
