@@ -14,6 +14,11 @@
     "class": "C",
     "teamId": 281930
   },
+  {
+    "teamName": "Granite High School",
+    "class": "C",
+    "teamId": 10030
+  },
   { "teamName": "Richey/Lambert Coop", "class": "C", "teamId": 281929 },
   {
     "teamName": "Manhattan/Manhattan Christian Co-op",
@@ -159,5 +164,40 @@
   { "teamName": "Ekalaka High School", "class": "C", "teamId": 9989 },
   { "teamName": "Circle High School", "class": "C", "teamId": 9996 },
   { "teamName": "Scobey High School", "class": "C", "teamId": 10096 },
-  { "teamName": "Poplar High School", "class": "C", "teamId": 10079 }
+  { "teamName": "Poplar High School", "class": "C", "teamId": 10079 },
+  {
+    "teamName": "Broadwater High School",
+    "class": "B",
+    "teamId": 9983
+  },
+  {
+    "teamName": "Superior High School",
+    "class": "C",
+    "teamId": 10110
+  },
+  {
+    "teamName": "Roy/Winifred Coop",
+    "class": "C",
+    "teamId": 281932
+  },
+  {
+    "teamName": "Froid/Medicine Lake Coop",
+    "class": "C",
+    "teamId": 281928
+  },
+  {
+    "teamName": "Standford/Geyser/Denton Co-op",
+    "class": "C",
+    "teamId": 273622
+  },
+  {
+    "teamName": "Custer/Hysham Coop",
+    "class": "C",
+    "teamId": 281926
+  },
+  {
+    "teamName": "Highwood",
+    "class": "C",
+    "teamId": 10043
+  }
 ]
