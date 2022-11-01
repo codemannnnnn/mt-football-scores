@@ -3,21 +3,22 @@
   /* margin: 0% 5% 2% 5%; */
   display: flex;
   justify-content: space-between;
-  width: 60%;
+  width: 70%;
   margin: auto;
 }
 
 .team-box {
   /* background: grey; */
-  border: 2px solid grey;
+  /* border: 2px solid #999; */
   padding: 3%;
-  width: 30%;
+  width: 50%;
   display: flex;
   flex-direction: space;
   justify-content: space-between;
   margin: 1%;
   align-items: center;
   border-radius: 10px;
+  box-shadow: -10px 10px 0px #999;
 }
 
 .home-away {
@@ -29,7 +30,36 @@
 .score-class {
   font-size: 4rem;
 }
-.team-class {
-  font-size: 1.2rem;
+
+.team-logo {
+  width: 50px;
+  height: 5vh;
+}
+.title-img {
+  display: flex;
+
+  align-items: center;
+}
+#img-logo-left {
+  margin-left: -6%;
+  margin-right: 6%;
+}
+
+.homeTeam {
+  font-size: 2rem;
   font-weight: 400;
+}
+
+.mascot-left {
+  float: left;
+  font-weight: 200;
+  margin-left: 2px;
+}
+.mascot-right {
+  float: right;
+  font-weight: 200;
+  margin-left: 2px;
+}
+#img-logo-right {
+  margin-left: 25%;
 }

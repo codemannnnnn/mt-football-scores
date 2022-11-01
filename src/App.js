@@ -52,6 +52,7 @@ function App() {
 
       let gameCollection = data.gameCollection.list;
       let teamCollection = data.teamCollection.list;
+      let teamPicCollection = data.teamPictureCollection.list;
 
       var arr = [];
 
@@ -82,18 +83,23 @@ function App() {
       const homeArr = [];
       arr.map((e) => {
         teamCollection.map((j) => {
-          if (j.teamId == e.homeTeamId) {
+          if (j.teamId === e.homeTeamId) {
+            var homeTeam = j.teamName.replace("High School", "");
+
             homeArr.push({
               ...e,
-              homeTeamName: j.teamName,
+              homeTeamName: homeTeam,
               homeTeamMascot: j.mascot1,
+              homeTeamPicId: j.mascotOrVarsityLetterTeamPictureId,
             });
           }
-          if (j.teamId == e.awayTeamId) {
+          if (j.teamId === e.awayTeamId) {
+            var awayTeam = j.teamName.replace("High School", "");
             homeArr.push({
               ...e,
-              awayTeamName: j.teamName,
+              awayTeamName: awayTeam,
               awayTeamMascot: j.mascot1,
+              awayTeamPicId: j.mascotOrVarsityLetterTeamPictureId,
             });
           }
         });
@@ -113,14 +119,40 @@ function App() {
         arr4.push(arr3[i]);
       }
 
+      var arr5 = [];
+      arr4.map((e) => {
+        teamPicCollection.map((j) => {
+          if (e.homeTeamPicId === j.teamPictureId) {
+            arr5.push({
+              ...e,
+              homeTeamPic: j.thumbnailUrl,
+            });
+          }
+        });
+      });
+
+      var arr6 = [];
+
+      arr5.map((e) => {
+        teamPicCollection.map((j) => {
+          if (e.awayTeamPicId === j.teamPictureId) {
+            arr6.push({
+              ...e,
+              awayTeamPic: j.thumbnailUrl,
+            });
+          }
+        });
+      });
+      console.log({ arr6 });
+
       //compare the master data list against the pulled in game data
       //match them, add the class to the object, then return.
       var finArr = [];
       for (let i = 0; i < masterDataList.length; i++) {
-        for (let j = 0; j < arr4.length; j++) {
-          if (masterDataList[i].teamId == arr4[j].homeTeamId) {
+        for (let j = 0; j < arr6.length; j++) {
+          if (masterDataList[i].teamId === arr6[j].homeTeamId) {
             var obj = {
-              ...arr4[j],
+              ...arr6[j],
               class: masterDataList[i].class,
             };
             finArr.push(obj);
@@ -135,16 +167,16 @@ function App() {
       const classCarr = [];
 
       finArr.map((e) => {
-        if (e.class == "AA") {
+        if (e.class === "AA") {
           classAAarr.push(e);
         }
-        if (e.class == "A") {
+        if (e.class === "A") {
           classAarr.push(e);
         }
-        if (e.class == "B") {
+        if (e.class === "B") {
           classBarr.push(e);
         }
-        if (e.class == "C") {
+        if (e.class === "C") {
           classCarr.push(e);
         }
       });
@@ -155,12 +187,12 @@ function App() {
       setClassB(classBarr);
       setClassC(classCarr);
       setLoading(false);
+
+      console.log({ finArr });
     };
 
     call();
   }, []);
-
-  // console.log(data);
 
   return (
     <div className="App">
@@ -179,17 +211,39 @@ function App() {
               return (
                 <div key={idx} className="game-box">
                   <div className="team-box">
-                    <div>
-                      <div className="team-class">{e.homeTeamName}</div>
-                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    <div className="title-img">
+                      <img
+                        src={e.homeTeamPic}
+                        href=""
+                        className="team-logo"
+                        id="img-logo-left"
+                      ></img>
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.homeTeamName}
+                        </div>
+                        <div className="mascot-left">{e.homeTeamMascot}</div>
+                      </div>
                     </div>
                     <div className="score-class">{e.score.homeTeam}</div>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div>
-                      <div className="team-class">{e.awayTeamName}</div>
-                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    <div className="title-img">
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.awayTeamName}
+                        </div>
+                        <div className="mascot-right">{e.awayTeamMascot}</div>
+                      </div>
+                      <div>
+                        <img
+                          src={e.awayTeamPic}
+                          href=""
+                          className="team-logo"
+                          id="img-logo-right"
+                        ></img>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -208,19 +262,41 @@ function App() {
           ) : (
             classA.map((e, idx) => {
               return (
-                <div key={idx} className="game-box class-a">
+                <div key={idx} className="game-box">
                   <div className="team-box">
-                    <div>
-                      <div className="team-class">{e.homeTeamName}</div>
-                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    <div className="title-img">
+                      <img
+                        src={e.homeTeamPic}
+                        href=""
+                        className="team-logo"
+                        id="img-logo-left"
+                      ></img>
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.homeTeamName}
+                        </div>
+                        <div className="mascot-left">{e.homeTeamMascot}</div>
+                      </div>
                     </div>
-                    <span className="score-class">{e.score.homeTeam}</span>
+                    <div className="score-class">{e.score.homeTeam}</div>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div>
-                      <div className="team-class"> {e.awayTeamName}</div>
-                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    <div className="title-img">
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.awayTeamName}
+                        </div>
+                        <div className="mascot-right">{e.awayTeamMascot}</div>
+                      </div>
+                      <div>
+                        <img
+                          src={e.awayTeamPic}
+                          href=""
+                          className="team-logo"
+                          id="img-logo-right"
+                        ></img>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -239,19 +315,41 @@ function App() {
           ) : (
             classB.map((e, idx) => {
               return (
-                <div key={idx} className="game-box class-b">
+                <div key={idx} className="game-box">
                   <div className="team-box">
-                    <div>
-                      <div className="team-class">{e.homeTeamName}</div>
-                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    <div className="title-img">
+                      <img
+                        src={e.homeTeamPic}
+                        href=""
+                        className="team-logo"
+                        id="img-logo-left"
+                      ></img>
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.homeTeamName}
+                        </div>
+                        <div className="mascot-left">{e.homeTeamMascot}</div>
+                      </div>
                     </div>
-                    <span className="score-class">{e.score.homeTeam}</span>
+                    <div className="score-class">{e.score.homeTeam}</div>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div>
-                      <div className="team-class"> {e.awayTeamName}</div>
-                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    <div className="title-img">
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.awayTeamName}
+                        </div>
+                        <div className="mascot-right">{e.awayTeamMascot}</div>
+                      </div>
+                      <div>
+                        <img
+                          src={e.awayTeamPic}
+                          href=""
+                          className="team-logo"
+                          id="img-logo-right"
+                        ></img>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -270,19 +368,41 @@ function App() {
           ) : (
             classC.map((e, idx) => {
               return (
-                <div key={idx} className="game-box class-c">
+                <div key={idx} className="game-box">
                   <div className="team-box">
-                    <div>
-                      <div className="team-class">{e.homeTeamName}</div>
-                      <div style={{ float: "left" }}>{e.homeTeamMascot}</div>
+                    <div className="title-img">
+                      <img
+                        src={e.homeTeamPic}
+                        href=""
+                        className="team-logo"
+                        id="img-logo-left"
+                      ></img>
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.homeTeamName}
+                        </div>
+                        <div className="mascot-left">{e.homeTeamMascot}</div>
+                      </div>
                     </div>
-                    <span className="score-class">{e.score.homeTeam}</span>
+                    <div className="score-class">{e.score.homeTeam}</div>
                   </div>
                   <div className="team-box">
                     <div className="score-class">{e.score.awayTeam}</div>
-                    <div>
-                      <div className="team-class">{e.awayTeamName}</div>
-                      <div style={{ float: "right" }}>{e.awayTeamMascot}</div>
+                    <div className="title-img">
+                      <div className="team-sub-box">
+                        <div className="team-class homeTeam">
+                          {e.awayTeamName}
+                        </div>
+                        <div className="mascot-right">{e.awayTeamMascot}</div>
+                      </div>
+                      <div>
+                        <img
+                          src={e.awayTeamPic}
+                          href=""
+                          className="team-logo"
+                          id="img-logo-right"
+                        ></img>
+                      </div>
                     </div>
                   </div>
                 </div>
