@@ -139,10 +139,12 @@ function App() {
             arr6.push({
               ...e,
               awayTeamPic: j.thumbnailUrl,
-              homeTeamWon:
+              homeTeamWonBG:
                 e.score.homeTeam > e.score.awayTeam ? "lightgrey" : "#fff",
-              awayTeamWon:
+              homeTeamWonFW: e.score.homeTeam > e.score.awayTeam ? 800 : "",
+              awayTeamWonBG:
                 e.score.homeTeam < e.score.awayTeam ? "lightgrey" : "#fff",
+              awayTeamWonFW: e.score.homeTeam < e.score.awayTeam ? 800 : "",
             });
           }
         });
@@ -218,7 +220,7 @@ function App() {
                 <div key={idx} className="game-box">
                   <div
                     className="team-box"
-                    style={{ background: e.homeTeamWon }}
+                    style={{ background: e.homeTeamWonBG }}
                   >
                     <div className="title-img">
                       <img
@@ -234,13 +236,23 @@ function App() {
                         <div className="mascot-left">{e.homeTeamMascot}</div>
                       </div>
                     </div>
-                    <div className="score-class">{e.score.homeTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.homeTeamWonFW }}
+                    >
+                      {e.score.homeTeam}
+                    </div>
                   </div>
                   <div
                     className="team-box"
-                    style={{ background: e.awayTeamWon }}
+                    style={{ background: e.awayTeamWonBG }}
                   >
-                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.awayTeamWonFW }}
+                    >
+                      {e.score.awayTeam}
+                    </div>
                     <div className="title-img">
                       <div className="team-sub-box">
                         <div className="team-class homeTeam">
@@ -277,7 +289,7 @@ function App() {
                 <div key={idx} className="game-box">
                   <div
                     className="team-box"
-                    style={{ background: e.homeTeamWon }}
+                    style={{ background: e.homeTeamWonBG }}
                   >
                     <div className="title-img">
                       <img
@@ -293,13 +305,23 @@ function App() {
                         <div className="mascot-left">{e.homeTeamMascot}</div>
                       </div>
                     </div>
-                    <div className="score-class">{e.score.homeTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.homeTeamWonFW }}
+                    >
+                      {e.score.homeTeam}
+                    </div>
                   </div>
                   <div
                     className="team-box"
-                    style={{ background: e.awayTeamWon }}
+                    style={{ background: e.awayTeamWonBG }}
                   >
-                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.awayTeamWonFW }}
+                    >
+                      {e.score.awayTeam}
+                    </div>
                     <div className="title-img">
                       <div className="team-sub-box">
                         <div className="team-class homeTeam">
@@ -336,7 +358,7 @@ function App() {
                 <div key={idx} className="game-box">
                   <div
                     className="team-box"
-                    style={{ background: e.homeTeamWon }}
+                    style={{ background: e.homeTeamWonBG }}
                   >
                     <div className="title-img">
                       <img
@@ -352,13 +374,23 @@ function App() {
                         <div className="mascot-left">{e.homeTeamMascot}</div>
                       </div>
                     </div>
-                    <div className="score-class">{e.score.homeTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.homeTeamWonFW }}
+                    >
+                      {e.score.homeTeam}
+                    </div>
                   </div>
                   <div
                     className="team-box"
-                    style={{ background: e.awayTeamWon }}
+                    style={{ background: e.awayTeamWonBG }}
                   >
-                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.awayTeamWonFW }}
+                    >
+                      {e.score.awayTeam}
+                    </div>
                     <div className="title-img">
                       <div className="team-sub-box">
                         <div className="team-class homeTeam">
@@ -395,7 +427,7 @@ function App() {
                 <div key={idx} className="game-box">
                   <div
                     className="team-box"
-                    style={{ background: e.homeTeamWon }}
+                    style={{ background: e.homeTeamWonBG }}
                   >
                     <div className="title-img">
                       <img
@@ -411,13 +443,23 @@ function App() {
                         <div className="mascot-left">{e.homeTeamMascot}</div>
                       </div>
                     </div>
-                    <div className="score-class">{e.score.homeTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.homeTeamWonFW }}
+                    >
+                      {e.score.homeTeam}
+                    </div>
                   </div>
                   <div
                     className="team-box"
-                    style={{ background: e.awayTeamWon }}
+                    style={{ background: e.awayTeamWonBG }}
                   >
-                    <div className="score-class">{e.score.awayTeam}</div>
+                    <div
+                      className="score-class"
+                      style={{ fontWeight: e.awayTeamWonFW }}
+                    >
+                      {e.score.awayTeam}
+                    </div>
                     <div className="title-img">
                       <div className="team-sub-box">
                         <div className="team-class homeTeam">
