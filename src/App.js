@@ -139,11 +139,15 @@ function App() {
             arr6.push({
               ...e,
               awayTeamPic: j.thumbnailUrl,
+              homeTeamWon:
+                e.score.homeTeam > e.score.awayTeam ? "lightgrey" : "#fff",
+              awayTeamWon:
+                e.score.homeTeam < e.score.awayTeam ? "lightgrey" : "#fff",
             });
           }
         });
       });
-
+      // console.log(arr6);
       //compare the master data list against the pulled in game data
       //match them, add the class to the object, then return.
       var finArr = [];
@@ -204,9 +208,18 @@ function App() {
             <h1>Loading...</h1>
           ) : (
             classAA.map((e, idx) => {
+              // if (e.winOrLose === 1) {
+              //   var colorW = {
+              //     background: "#999",
+              //   };
+              // }
+
               return (
                 <div key={idx} className="game-box">
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.homeTeamWon }}
+                  >
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}
@@ -223,7 +236,10 @@ function App() {
                     </div>
                     <div className="score-class">{e.score.homeTeam}</div>
                   </div>
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.awayTeamWon }}
+                  >
                     <div className="score-class">{e.score.awayTeam}</div>
                     <div className="title-img">
                       <div className="team-sub-box">
@@ -259,7 +275,10 @@ function App() {
             classA.map((e, idx) => {
               return (
                 <div key={idx} className="game-box">
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.homeTeamWon }}
+                  >
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}
@@ -276,7 +295,10 @@ function App() {
                     </div>
                     <div className="score-class">{e.score.homeTeam}</div>
                   </div>
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.awayTeamWon }}
+                  >
                     <div className="score-class">{e.score.awayTeam}</div>
                     <div className="title-img">
                       <div className="team-sub-box">
@@ -312,7 +334,10 @@ function App() {
             classB.map((e, idx) => {
               return (
                 <div key={idx} className="game-box">
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.homeTeamWon }}
+                  >
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}
@@ -329,7 +354,10 @@ function App() {
                     </div>
                     <div className="score-class">{e.score.homeTeam}</div>
                   </div>
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.awayTeamWon }}
+                  >
                     <div className="score-class">{e.score.awayTeam}</div>
                     <div className="title-img">
                       <div className="team-sub-box">
@@ -365,7 +393,10 @@ function App() {
             classC.map((e, idx) => {
               return (
                 <div key={idx} className="game-box">
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.homeTeamWon }}
+                  >
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}
@@ -382,7 +413,10 @@ function App() {
                     </div>
                     <div className="score-class">{e.score.homeTeam}</div>
                   </div>
-                  <div className="team-box">
+                  <div
+                    className="team-box"
+                    style={{ background: e.awayTeamWon }}
+                  >
                     <div className="score-class">{e.score.awayTeam}</div>
                     <div className="title-img">
                       <div className="team-sub-box">
