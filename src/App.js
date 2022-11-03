@@ -149,7 +149,16 @@ function App() {
           }
         });
       });
-      // console.log(arr6);
+      // code for checking for dups
+      // for (let i = 0; i < arr6.length; i++) {
+      //   for (let j = 0; j < arr6.length; j++) {
+      //     if (arr6[i].gameId === arr6[j + 1].gameId) {
+      //       console.log(arr6[i].gameId);
+      //     } else {
+      //       console.log("end of loop");
+      //     }
+      //   }
+      // }
       //compare the master data list against the pulled in game data
       //match them, add the class to the object, then return.
       var finArr = [];
