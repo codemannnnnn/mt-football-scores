@@ -16,7 +16,7 @@ function App() {
   const [classB, setClassB] = useState([]);
   const [classC, setClassC] = useState([]);
 
-  document.title = "Montana High School Football";
+  document.title = "Montana High School Basketball";
 
   //loading state
   const [loading, setLoading] = useState(true);
@@ -34,7 +34,7 @@ function App() {
       aboveConfidenceGrade: 30,
       afterDateTime: afterDate,
       beforeDateTime: beforeDate,
-      sportNames: ["football"],
+      sportNames: ["basketball"],
       squadIds: [1010],
       country: "US",
       state: "MT",
@@ -53,6 +53,7 @@ function App() {
       let gameCollection = data.gameCollection.list;
       let teamCollection = data.teamCollection.list;
       let teamPicCollection = data.teamPictureCollection.list;
+      console.log(gameCollection);
 
       var arr = [];
 
@@ -65,10 +66,16 @@ function App() {
           let homeTeamScore = e.lastScore.homeTeamScore;
           let awayTeam = e.awayTeamId;
           let awayTeamScore = e.lastScore.awayTeamScore;
+          let gameRecordedDate = e.lastScore.scoredDateTime;
 
+          var utcDate = moment.utc(gameRecordedDate).toDate();
+          var localTime = moment(utcDate).local().format("MM/DD/YYYY");
+
+          // console.log(e.lastScore);
+          // console.log(gameDate);
           var newRes = {
             gameId: e.gameId,
-
+            gameDate: localTime,
             homeTeamId: homeTeam,
             awayTeamId: awayTeam,
             score: {
@@ -194,6 +201,7 @@ function App() {
         }
       });
 
+      console.log({ finArr });
       setData(finArr);
       setClassAA(classAAarr);
       setClassA(classAarr);
@@ -207,7 +215,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Montana High School Football</h1>
+      <h1>Montana High School Basketball</h1>
       <div className="home-away">
         <h1>Home</h1>
         <h1>Away</h1>
@@ -231,6 +239,7 @@ function App() {
                     className="team-box"
                     style={{ background: e.homeTeamWonBG }}
                   >
+                    <div className="game-date">{e.gameDate}</div>
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}
@@ -262,6 +271,7 @@ function App() {
                     >
                       {e.score.awayTeam}
                     </div>
+
                     <div className="title-img">
                       <div className="team-sub-box">
                         <div className="team-class homeTeam">
@@ -269,6 +279,7 @@ function App() {
                         </div>
                         <div className="mascot-right">{e.awayTeamMascot}</div>
                       </div>
+
                       <div>
                         <img
                           src={e.awayTeamPic}
@@ -300,6 +311,7 @@ function App() {
                     className="team-box"
                     style={{ background: e.homeTeamWonBG }}
                   >
+                    <div className="game-date">{e.gameDate}</div>
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}
@@ -369,6 +381,7 @@ function App() {
                     className="team-box"
                     style={{ background: e.homeTeamWonBG }}
                   >
+                    <div className="game-date">{e.gameDate}</div>
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}
@@ -438,6 +451,7 @@ function App() {
                     className="team-box"
                     style={{ background: e.homeTeamWonBG }}
                   >
+                    <div className="game-date">{e.gameDate}</div>
                     <div className="title-img">
                       <img
                         src={e.homeTeamPic}

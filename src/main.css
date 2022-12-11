@@ -63,3 +63,12 @@
 #img-logo-right {
   margin-left: 25%;
 }
+
+.game-date {
+  position: absolute;
+  margin-top: 7%;
+  margin-left: -1.8%;
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: 300;
+}
