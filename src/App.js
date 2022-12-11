@@ -53,7 +53,7 @@ function App() {
       let gameCollection = data.gameCollection.list;
       let teamCollection = data.teamCollection.list;
       let teamPicCollection = data.teamPictureCollection.list;
-      console.log(gameCollection);
+      // console.log(gameCollection);
 
       var arr = [];
 
@@ -201,7 +201,7 @@ function App() {
         }
       });
 
-      console.log({ finArr });
+      // console.log({ finArr });
       setData(finArr);
       setClassAA(classAAarr);
       setClassA(classAarr);
